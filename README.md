@@ -28,6 +28,6 @@ pip install -e .
 
 ## Section 2
 
-| a column | column 2\
+| a column | column 2 |
 |---|---|
 | row | row |

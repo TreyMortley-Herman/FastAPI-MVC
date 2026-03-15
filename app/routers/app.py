@@ -1,3 +1,4 @@
+import requests
 from fastapi import APIRouter, HTTPException, Depends, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlmodel import select
@@ -15,12 +16,16 @@ app_router = APIRouter()
 async def app(
     request: Request,
     user: AuthDep,
-    db:SessionDep
+    db: SessionDep
 ):
+    response = requests.get("https://jsonplaceholder.typicode.com/todos")
+    todos = response.json()
+
     return templates.TemplateResponse(
-        request=request, 
+        request=request,
         name="app.html",
         context={
-            "user": user
+            "user": user,
+            "todos": todos
         }
     )
